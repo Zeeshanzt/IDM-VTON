@@ -29,10 +29,6 @@ def generate_virtual_tryon(human_image_url, garment_image_url, **predict_kwargs)
         return []
 
 
-# Example usage
-human_image_url = "https://example.com/path/to/human_image.jpg"
-garment_image_url = "https://example.com/path/to/garment_image.jpg"
-
 def handler(job):
     # Get the input URLs from the job payload
     human_image_url = job.get("human_image_url")
