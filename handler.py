@@ -30,10 +30,10 @@ def generate_virtual_tryon(human_image_url, garment_image_url, **predict_kwargs)
 
 
 def handler(job):
+    job_input = job["input"]
     # Get the input URLs from the job payload
-    human_image_url = job.get("human_image_url")
-    garment_image_url = job.get("garment_image_url")
-
+    human_image_url = job_input.get("human_image_url")
+    garment_image_url = job_input.get("garment_image_url")
     # Check if the URLs are provided
     if not human_image_url or not garment_image_url:
         return "Error: Missing input URLs."
