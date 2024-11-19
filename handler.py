@@ -34,6 +34,14 @@ def handler(job):
     # Get the input URLs from the job payload
     human_image_url = job_input.get("human_image_url")
     garment_image_url = job_input.get("garment_image_url")
+    garment_description = job_input.get("garment_description", "T-shirt")
+    category = job_input.get("category", "upper_body")
+    is_checked = job_input.get("is_checked", True)
+    is_checked_crop = job_input.get("is_checked_crop", True)
+    denoise_steps = job_input.get("denoise_steps", 30)
+    seed = job_input.get("seed", 1)
+    is_randomize_seed = job_input.get("is_randomize_seed", True)
+    number_of_images = job_input.get("number_of_images", 1)
     # Check if the URLs are provided
     if not human_image_url or not garment_image_url:
         return "Error: Missing input URLs."
@@ -41,14 +49,14 @@ def handler(job):
     output_images_base64 = generate_virtual_tryon(
         human_image_url=human_image_url,
         garment_image_url=garment_image_url,
-        garment_description="T-shirt",
-        category="upper_body",
-        is_checked=True,
-        is_checked_crop=True,
-        denoise_steps=30,
-        seed=1,
+        garment_description=garment_description,
+        category=category,
+        is_checked=is_checked,
+        is_checked_crop=is_checked_crop,
+        denoise_steps=denoise_steps,
+        seed=seed,
         is_randomize_seed=True,
-        number_of_images=1
+        number_of_images=number_of_images
     )
 
     # Print the first image's base64 string as an example
